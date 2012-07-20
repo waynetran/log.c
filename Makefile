@@ -14,20 +14,21 @@ clean:
 	cd src && $(MAKE) $@
 
 distclean: clean FORCE
+	-rm -rf test lib
 	cd src && $(MAKE) $@
 
-dist: $(distdir).tar.gz
+dist: all $(distdir).tar.gz
 
 $(distdir).tar.gz: $(distdir)
 	tar chof - $(distdir) | gzip -9 -c > $@
 	rm -rf $(distdir)
 
-$(distdir): FORCE distclean
+$(distdir): FORCE clean
 	mkdir -p $(distdir)
-	cp -r lib $(distdir)
 	cp -r src $(distdir)
 	cp  Makefile $(distdir)
-	cp  algorithms.* $(distdir)
+	-cp  README.* $(distdir)
+	-cp  LICENSE $(distdir)
 
 distcheck: $(distdir).tar.gz
 	gzip -cd $(distdir).tar.gz | tar xvf -

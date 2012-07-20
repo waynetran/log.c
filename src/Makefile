@@ -6,16 +6,17 @@ TESTOBJS = main.o
 OUT = liblog.c.a
 
 RM = rm -f
-MKDIR = mkdir -p
 
 all: $(OUT) test
 
 $(OUT): $(OBJS)
 	ar rcs $@ $(OBJS)
+	mkdir -p ../lib
 	cp $(OUT) ../lib
 
 test: $(OUT) $(TESTOBJS)
 	$(CC) -o $@ $(TESTOBJS) $(OUT) $(LDFLAGS)
+	mkdir -p ../test
 	mv test ../test
 
 $(OBJS): %.o: %.c
@@ -25,7 +26,7 @@ $(TESTOBJS): %.o: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
 clean:
-	$(RM) $(OBJS) $(TESTOBJS) *~ "#*" test
+	$(RM) $(OBJS) $(TESTOBJS) *~ "#*" test $(OUT)
 
 distclean: clean
 	$(RM) $(OUT)
