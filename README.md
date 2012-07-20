@@ -47,7 +47,7 @@ logClose();
 # Flags
 Call logSetFlags() after logInit() with a set of flags to change defaults:
 
-	LOGFLAG_FILE	/* log to a file with the name specified by domain */
+	LOGFLAG_FILE	/* log to a file with the name specified by logInit's domain argument*/
 	LOGFLAG_STDOUT	/* (Default) log to stdout */
 	LOGFLAG_STDERR	/* log to stderr for ERROR and WARNING messages */
 	LOGFLAG_SYSLOG	/* log to system logs */
@@ -62,7 +62,7 @@ Call logSetFlags() after logInit() with a set of flags to change defaults:
 	make && sudo make install
 
 This will build and install into:  
-* ***usr/local/include/log.c/log.h***
+* ***/usr/local/include/log.c/log.h***
 * ***/usr/local/lib/liblog.c.a***
 
 
