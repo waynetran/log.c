@@ -1,0 +1,6 @@
+.git
+*~
+*.[oa]
+/lib/
+/test/
+/log.c.*
