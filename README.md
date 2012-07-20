@@ -27,7 +27,7 @@ logSetFlags(LOGFLAG_FILE |
 		LOGFLAG_TRACE|
 		LOGFLAG_DEBUG);
 logInfo("this is an info with an integer: %d",15);
-logError("this is an error in scientifc notation: %e",102020222);
+logError("this is an error in scientifc notation: %e",1023332.222);
 logDebug("this is a debug with string: %s %s", "hello", "world");
 logWarn ("this is a warning with three decimals %0.3f", 3.33333);
 logTrace("this is a trace with two decimals %0.2f", 3.33333);
@@ -36,11 +36,12 @@ logClose();
 
 ###./test_file.log
 ```
-[Fri Jul 20 00:06:16 2012] INFO: this is an info with an integer: 15
-[Fri Jul 20 00:06:16 2012] ERROR: this is an error in scientifc notation: 3.333328e+00
-[Fri Jul 20 00:06:16 2012] DEBUG: this is a debug with string: hello world
-[Fri Jul 20 00:06:16 2012] WARNING: this is a warning with three decimals 3.333
-[Fri Jul 20 00:06:16 2012] TRACE: this is a trace with two decimals 3.33
+[Fri Jul 20 01:09:59 2012] INFO: this is an info with an integer: 15
+[Fri Jul 20 01:09:59 2012] ERROR: this is an error in scientifc notation: 1.023332e+06
+[Fri Jul 20 01:09:59 2012] DEBUG: this is a debug with string: hello world
+[Fri Jul 20 01:09:59 2012] WARNING: this is a warning with three decimals 3.333
+[Fri Jul 20 01:09:59 2012] TRACE: this is a trace with two decimals 3.33
+
 ```
 
 # Flags

@@ -21,7 +21,7 @@ int main(int argc, char * argv[])
 bool test_default(){
 	logInit("test_default");
 	logInfo("this is an info with an integer: %d",15);
-	logError("this is an error in scientifc notation: %e",102020222);
+	logError("this is an error in scientifc notation: %e",1023332.222);
 	logDebug("this is a debug with string: %s %s", "hello", "world");
 	logWarn ("this is a warning with three decimals %0.3f", 3.33333);
 	logTrace("this is a trace with two decimals %0.2f", 3.33333);
@@ -38,7 +38,7 @@ bool test_file(){
 				LOGFLAG_TRACE|
 				LOGFLAG_DEBUG);
 	logInfo("this is an info with an integer: %d",15);
-	logError("this is an error in scientifc notation: %e",102020222);
+	logError("this is an error in scientifc notation: %e",1023332.222);
 	logDebug("this is a debug with string: %s %s", "hello", "world");
 	logWarn ("this is a warning with three decimals %0.3f", 3.33333);
 	logTrace("this is a trace with two decimals %0.2f", 3.33333);
