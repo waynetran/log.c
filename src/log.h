@@ -36,10 +36,15 @@ typedef enum {
  *		LOGFLAG_STDOUT|LOGFLAG_INFO|LOGFLAG_ERROR|
 		LOGFLAG_DEBUG|LOGFLAG_TRACE|LOGFLAG_WARN
  */
-bool logInit(char *domain);
+bool logInit(const char *domain);
 bool logClose();
 
+const char * logGetDomain();
+
 void logSetFlags(DWORD logflags);
+DWORD logGetFlags();
+DWORD logRemoveFlags(DWORD mask);
+DWORD logAddFlags(DWORD mask);
 
 /*Will be redirected to STDERR if the flag LOGFLAG_STDERR is set.*/
 void logError(const char *format, ...);

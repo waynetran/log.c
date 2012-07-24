@@ -7,7 +7,7 @@
 #include <stdarg.h>
 
 typedef struct {
-	char *domain;
+	const char *domain;
 	int fd;
 	DWORD flags;
 
@@ -15,14 +15,13 @@ typedef struct {
 
 static Logger logger = {"",-1,0};
 
-bool logInit(char *domain){
+bool logInit(const char *domain){
 	if(!domain)
 		return false;
 
 	logger.domain = domain;
-	logger.flags = LOGFLAG_STDOUT|LOGFLAG_INFO|LOGFLAG_ERROR|
-			LOGFLAG_DEBUG|LOGFLAG_TRACE|LOGFLAG_WARN;
-	logSetFlags(logger.flags);
+	logSetFlags(LOGFLAG_STDOUT|LOGFLAG_INFO|LOGFLAG_ERROR|
+				LOGFLAG_DEBUG|LOGFLAG_TRACE|LOGFLAG_WARN);
 
 	return true;
 
@@ -39,7 +38,7 @@ bool logClose(){
 }
 
 void logSetFlags(DWORD logflags){
-
+	logClose();
 	logger.flags = logflags;
 
 	if(logger.domain && strlen(logger.domain) > 0){
@@ -53,23 +52,30 @@ void logSetFlags(DWORD logflags){
 			if (logger.fd == -1){
 				logError("Could not open file for logging.");
 			}
-		}else{
-			if(logger.fd != -1 && close(logger.fd)){
-				logError("Could not close log file.");
-			}
-			logger.fd = -1;
 		}
 
 		if((logger.flags & LOGFLAG_SYSLOG) == LOGFLAG_SYSLOG){
 			/*logs PID, connects immediately and are generic user level messages*/
 			openlog (logger.domain, LOG_PID | LOG_NDELAY, LOG_USER);
-		}else{
-			closelog();
 		}
-	}else{
-		logClose();
 	}
 
+}
+
+DWORD logGetFlags(){
+	return logger.flags;
+}
+
+DWORD logRemoveFlags(DWORD mask){
+	DWORD flags = logger.flags & ~mask;
+	logSetFlags(flags);
+	return flags;
+}
+
+DWORD logAddFlags(DWORD mask){
+	DWORD flags = logger.flags | mask;
+	logSetFlags(flags);
+	return flags;
 }
 
 char * currentTimeString(){
