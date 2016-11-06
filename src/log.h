@@ -14,6 +14,9 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*Max length per message*/
 #define MAXLENGTH 4096
@@ -56,5 +59,8 @@ void logInfo(const char *format, ...);
 void logDebug(const char *format, ...);
 void logTrace(const char *format, ...);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif // LOG_H
